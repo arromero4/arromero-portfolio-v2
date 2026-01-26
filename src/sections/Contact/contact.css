@@ -1,0 +1,34 @@
+/* Texto */
+.contactText {
+  margin: 0 0 14px;
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+/* Contenedor de botones (centrados como en el mockup) */
+.contactActions {
+  display: flex;
+  gap: 14px;
+  justify-content: center;
+}
+
+/* Botón con tipografía pixel + tamaño */
+.contactBtn {
+  font-family: var(--font-pixel);
+  font-size: 12px;
+  padding: 10px 18px;
+}
+
+/* En pantallas pequeñas: apila o estira */
+@media (max-width: 520px) {
+  .contactActions {
+    flex-direction: column;
+  }
+
+  .contactBtn {
+    width: 100%;
+    text-align: center;
+  }
+}

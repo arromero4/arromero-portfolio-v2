@@ -1,0 +1,26 @@
+.siteFooter{
+  margin-top: 26px;
+  background: var(--header-dark);
+
+    /* Bordes tipo “marco” como el mockup */
+  border-top: 4px solid var(--panel-border);
+  box-shadow: 0 -6px 0 var(--panel-shadow);
+}
+/* Contenido centrado y con ancho máximo */
+.siteFooter__inner {
+  max-width: var(--content-max);
+  margin: 0 auto;
+  padding: 18px 16px;
+  display: flex;
+  justify-content: center;
+}
+
+
+/* Texto */
+
+.siteFooter__text {
+  color: var(--header-text);
+  font-family: var(--font-pixel);
+  font-size: 12px;
+  letter-spacing: 0.5px;
+}

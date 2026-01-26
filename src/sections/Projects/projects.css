@@ -1,0 +1,13 @@
+/* Grid 2 columnas como el mockup */
+.projectsGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+/* Mobile: 1 columna */
+@media (max-width: 720px) {
+  .projectsGrid {
+    grid-template-columns: 1fr;
+  }
+}

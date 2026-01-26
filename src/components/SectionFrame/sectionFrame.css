@@ -1,0 +1,77 @@
+/* =========================================
+   SectionFrame (skin de secciones)
+   Replica el look del screenshot: marco + barra dorada + panel
+   ================================================= */
+
+
+   .sectionFrame{
+    position: relative;
+    /* Marco exterior */
+    border: 4px solid var(--panel-border);
+    background: var(--panel-bg);
+    box-shadow: 0 6px 0 var(--panel-shadow);
+
+  /* Espacio para el borde interior */
+  padding: 12px;    
+
+   }
+
+   /* Borde interior (doble marco) */
+
+
+   .sectionFrame::before {
+    content: "";
+    position: absolute;
+    inset: 8px;
+    border: 3px solid var(--panel-border);
+    pointer-events: none;  /* para que no interfiera con clicks */
+   }
+
+   /* Barra superior dorada */
+   .sectionFrame__titleBar {
+    position: relative;
+    z-index: 1;  /* encima del borde */
+    margin: 0;
+    padding: 12px 12px;
+
+    background: #b77a2a; /* dorado/café como el ejemplo */
+      border: 3px solid var(--panel-border);
+  box-shadow: 0 4px 0 var(--panel-shadow);
+   }
+
+   /* Texto del título (pixel) */
+.sectionFrame__title {
+  margin: 0;
+  text-align: center;
+
+  font-family: var(--font-pixel);
+  font-size: 18px;
+  letter-spacing: 1px;
+
+  color: #ffffff;
+}
+
+/* Panel de contenido */
+.sectionFrame__content {
+  position: relative;
+  z-index: 1;
+
+  margin-top: 12px;
+  padding: 16px;
+color: var(--text-primary); /* ✅ esto hace el texto blanco en DARK */
+  background: var(--panel-bg);
+  border: 3px solid var(--panel-border);
+  box-shadow: 0 4px 0 var(--panel-shadow);
+
+  /* Texto tipo “caja” */
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+
+
+/* Separación entre secciones */
+.sectionFrame + .sectionFrame {
+  margin-top: 18px;
+}

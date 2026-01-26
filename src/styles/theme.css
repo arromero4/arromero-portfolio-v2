@@ -1,0 +1,102 @@
+/* =========================================
+   Theme tokens (CSS variables)
+   Controladas por: html[data-theme="dark|light"]
+   ========================================= */
+
+:root {
+    /* Tipografía base: NES.css sugiere fuentes retro; aquí usamos fallback limpio */
+  --font-base: 'Press Start 2P', cursive, 'Courier New', Courier, monospace;
+
+    /* Layout */
+  --page-bg: #7bb4ff;            /* azul cielo como la imagen */
+  --content-max: 980px;
+
+    /* Contenedores */
+  --panel-bg: #f7f4e9;           /* crema */
+  --panel-border: #1f2a3a;       /* azul oscuro */
+  --panel-shadow: rgba(0, 0, 0, 0.25);
+
+    /* Contenedores */
+  --panel-bg: #f7f4e9;           /* crema */
+  --panel-border: #1f2a3a;       /* azul oscuro */
+  --panel-shadow: rgba(0, 0, 0, 0.25);
+
+  /* Header */
+  --header-dark: #1f2a3a;
+  --header-text: #f5f5f5;
+
+  /* Subheader */
+  --subheader-bg: #2b3a52;
+  --subheader-text: #eaeaea;
+
+  /* Botones */
+  --btn-bg: #2d67ff;
+  --btn-text: #ffffff;
+
+  /* Acentos */
+  --muted: rgba(255, 255, 255, 0.75);
+}
+
+/* LIGHT */
+html[data-theme="light"] {
+  --page-bg: #7bb4ff;
+  --panel-bg: #f7f4e9;
+  --panel-border: #1f2a3a;
+  --header-dark: #1f2a3a;
+  --header-text: #f5f5f5;
+  --subheader-bg: #2b3a52;
+  --subheader-text: #eaeaea;
+  --btn-bg: #2d67ff;
+  --btn-text: #ffffff;
+}
+
+/* DARK (un dark-mode real que sigue viéndose retro) */
+html[data-theme="dark"] {
+  --page-bg: #0e1626;          /* fondo oscuro */
+  --panel-bg: #141b2a;         /* panel oscuro */
+  --panel-border: #e6e6e6;     /* borde claro para contraste */
+  --panel-shadow: rgba(0, 0, 0, 0.45);
+
+  --header-dark: #0b1220;
+  --header-text: #ffffff;
+
+  --subheader-bg: #111a2e;
+  --subheader-text: #eaeaea;
+
+  --btn-bg: #2d67ff;
+  --btn-text: #ffffff;
+
+  --muted: rgba(255, 255, 255, 0.75);
+    --text-primary: #ffffff;  /* ✅ texto blanco en DARK */
+  --text-muted: rgba(255, 255, 255, 0.8);
+}
+
+/* =========================================
+   Base layout
+   ========================================= */
+
+   body {
+  margin: 0;
+  background: var(--page-bg);
+}
+
+/* Pantalla completa centrada */
+.screenCenter {
+  min-height: 100vh;
+  display: block;
+  padding: 24px 16px;
+}
+
+/* Contenedor del contenido (ya lo tenías, lo dejamos más “tight”) */
+.page {
+
+  width: 100%;
+  max-width: var(--content-max);
+  margin: 0 auto;
+}
+/* Utilidad para centrar contenido */
+.center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
