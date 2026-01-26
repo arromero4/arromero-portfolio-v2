@@ -101,8 +101,9 @@ npm install
 npm run dev
 Luego abre:
 👉 http://localhost:5173
+```
 
-🎯 Objetivo del proyecto
+## 🎯 Objetivo del proyecto
 Este portafolio busca:
 
 Mostrar proyectos reales de frontend y mobile
@@ -123,18 +124,6 @@ Integración con CMS o API
 Este proyecto es de uso personal.
 El código puede ser reutilizado con fines educativos o de referencia.
 
-© 2024 Andrés R. Romero
+© 2026 Andrés R. Romero
 
 
----
-
-Si quieres, el siguiente paso natural sería:
-- agregar **capturas (screenshots)** al README  
-- o una sección **“Roadmap / Próximas mejoras”**  
-- o dejarlo listo para **deploy en Netlify / Vercel**
-
-Tú me dices cómo lo seguimos puliendo.
-
-
-
-ChatGPT can make mistakes. Check important info. See Cookie Preferences.
