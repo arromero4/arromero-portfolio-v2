@@ -1,32 +1,20 @@
-type ThemeToogleProps = {
-    /**
-   * Etiqueta visible en el botón: "DARK" o "LIGHT"
-   */
-  label: string;
-  
-  /**
-   * Callback para alternar el tema
-   */
-  onClick: () => void;
-
+type ThemeToggleProps = {
+  theme: 'dark' | 'light'
+  onClick: () => void
 }
-  /**
- * ThemeToggle:
- * Botón encapsulado para alternar entre DARK/LIGHT.
- * - Mantiene el JSX del botón aislado
- * - Permite reutilización en otras secciones
- */
 
-  export default function ThemeToggle({ label, onClick }: ThemeToogleProps) {
-    return(
-      <button
-        type="button"
-        aria-label="Toggle theme"
-        onClick={onClick}
-        className={label === 'DARK' ? 'nes-btn is-primary' : 'nes-btn is-success'}
-      >
-        {label}
-      </button>
-    )
+export default function ThemeToggle({ theme, onClick }: ThemeToggleProps) {
+  const nextTheme = theme === 'dark' ? 'claro' : 'oscuro'
 
-  }
+  return (
+    <button
+      type="button"
+      className="themeToggle"
+      aria-label={`Cambiar a modo ${nextTheme}`}
+      aria-pressed={theme === 'dark'}
+      onClick={onClick}
+    >
+      <span aria-hidden="true">{theme === 'dark' ? 'LIGHT' : 'DARK'}</span>
+    </button>
+  )
+}

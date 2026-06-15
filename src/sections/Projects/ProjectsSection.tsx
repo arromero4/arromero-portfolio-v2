@@ -1,35 +1,28 @@
-/**
- * ProjectsSection:
- * Contenedor de la sección PROJECTS.
- * - Usa SectionFrame para el marco + barra dorada.
- * - Renderiza cards en grid (2 columnas en desktop, 1 en mobile).
- */
-
-import ProjectCard from "../../components/ProjectCard/ProjectCard";
-import SectionFrame from "../../components/SectionFrame/SectionFrame";
+import ProjectCard from '../../components/ProjectCard/ProjectCard'
+import SectionFrame from '../../components/SectionFrame/SectionFrame'
+import { projects } from '../../data/projects'
 import './projects.css'
 
 export default function ProjectsSection() {
   return (
     <SectionFrame
-      title="PROJECTS"
+      id="projects"
+      eyebrow="02 / TRABAJO"
+      title="Proyectos seleccionados"
     >
-      <div className="projectsGrid">
-        <ProjectCard
-          title="Bitácora de auditoría"
-          description="Plataforma para registrar cambios, evidencias y auditorías de red."
-          tech={["React", "TypeScript", "Node", "PostgreSQL"]}
-          repoUrl="https://github.com/tu-usuario/bitacora"  // cambia a tu repo real
-          demoUrl="https://tu-demo.com"                    // cambia a tu demo real
-        />
+      <p className="projectsIntro">
+        Una selección de proyectos públicos que muestra trabajo web, full stack
+        y mobile.
+      </p>
 
-        <ProjectCard
-          title="Pomodoro Timer (Flutter)"
-          description="Temporizador Pomodoro con animaciones."
-          tech={["Flutter", "Dart"]}
-          repoUrl="https://github.com/tu-usuario/pomodoro" // cambia a tu repo real
-          demoUrl={undefined}                              // por ahora sin demo
-        />
+      <div className="projectsGrid">
+        {projects.map((project, index) => (
+          <ProjectCard
+            key={project.title}
+            index={index + 1}
+            {...project}
+          />
+        ))}
       </div>
     </SectionFrame>
   )

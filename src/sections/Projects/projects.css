@@ -1,12 +1,23 @@
-/* Grid 2 columnas como el mockup */
-.projectsGrid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 14px;
+.projectsIntro {
+  max-width: 64ch;
+  margin: 0 0 28px;
+  color: var(--ink-muted);
+  font-size: 1.05rem;
 }
 
-/* Mobile: 1 columna */
-@media (max-width: 720px) {
+.projectsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+}
+
+@media (max-width: 940px) {
+  .projectsGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
   .projectsGrid {
     grid-template-columns: 1fr;
   }

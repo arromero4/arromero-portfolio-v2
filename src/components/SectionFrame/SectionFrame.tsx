@@ -1,40 +1,29 @@
+import type { ReactNode } from 'react'
 import './sectionFrame.css'
-type SectionFrameProps = {
-    /**
-   * Título de la sección (ej: "ABOUT", "PROJECTS", "CONTACT")
-   */
-  title: string;
 
-  /**
-   * Contenido interno de la sección (texto, cards, botones, etc.)
-   */
-  children: React.ReactNode;
+type SectionFrameProps = {
+  id: string
+  eyebrow: string
+  title: string
+  children: ReactNode
 }
 
-/**
- * SectionFrame:
- * Componente genérico para secciones con estética tipo "marco retro":
- * - Marco exterior + borde interior
- * - Barra superior dorada con el título centrado
- * - Área de contenido debajo (panel)
- *
- * Esto nos permite reusar exactamente el mismo "skin" en ABOUT/PROJECTS/CONTACT.
- */
+export default function SectionFrame({
+  id,
+  eyebrow,
+  title,
+  children,
+}: SectionFrameProps) {
+  const titleId = `${id}-title`
 
-export default function SectionFrame({ title, children }: SectionFrameProps) {
-  return(
-    <section className="sectionFrame">
-      {/* Barra de título (dorado) */}
-      <div className="sectionFrame__titleBar">
-        <h2 className="sectionFrame__title">
-          {title}
-        </h2>
-      </div>
+  return (
+    <section className="sectionFrame" id={id} aria-labelledby={titleId}>
+      <header className="sectionFrame__header">
+        <span>{eyebrow}</span>
+        <h2 id={titleId}>{title}</h2>
+      </header>
 
-      {/* Área de contenido (panel) */}
-      <div className="sectionFrame__content">
-        {children}
-      </div>
+      <div className="sectionFrame__content">{children}</div>
     </section>
   )
 }

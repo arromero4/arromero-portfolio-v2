@@ -1,95 +1,59 @@
+import type { Project } from '../../data/projects'
 import './projectCard.css'
-type ProjectCardProps = {
-  /**
-     * Título del proyecto (ej: "Bitácora de auditoría")
-     */
-  title: string;
-  /**
- * Descripción breve del proyecto (1-2 líneas como en el mockup)
- */
-  description: string;
-  /**
-   * Tecnologías mostradas como chips
-   */
-  tech: string[];
-  /**
-   * Link al repositorio (si no existe, puedes pasar undefined)
-   */
-  repoUrl?: string;
-  /**
- * Link a demo (si no existe, puedes pasar undefined)
- */
-  demoUrl?: string;
+
+type ProjectCardProps = Project & {
+  index: number
 }
 
-/**
- * ProjectCard:
- * Representa una card estilo retro dentro de la sección PROJECTS.
- * Incluye:
- * - Barra superior con título
- * - Descripción
- * - Chips de tecnologías
- * - Botones: REPO y DEMO (opcionales)
- */
-
-export default function ProjectCard({ title, description, tech, repoUrl, demoUrl }: ProjectCardProps) {
+export default function ProjectCard({
+  index,
+  title,
+  category,
+  description,
+  tech,
+  repoUrl,
+  demoUrl,
+}: ProjectCardProps) {
   return (
     <article className="projectCard">
-      {/* Header oscuro de la card (similar a la franja del mockup) */}
-      <div className="projectCard__header">
-        <h3 className="projectCard__title">
-          {title}
-        </h3>
+      <div className="projectCard__meta">
+        <span>{String(index).padStart(2, '0')}</span>
+        <span>{category}</span>
       </div>
 
-      {/* Body */}
       <div className="projectCard__body">
-        <p className="projectCard__description">{description}</p>
+        <h3>{title}</h3>
+        <p>{description}</p>
 
-        {/* Tech chips */}
-        <div className="projectCard__chips">
-          {
-            tech.map((t) => (
-              <span key={t} className="projectChip">
-                {t}
-              </span>
-            ))
-          }
-        </div>
+        <ul className="projectCard__tech" aria-label={`Tecnologías de ${title}`}>
+          {tech.map((technology) => (
+            <li key={technology}>{technology}</li>
+          ))}
+        </ul>
+      </div>
 
-        {/* Acciones */}
+      <div className="projectCard__actions">
+        <a
+          className="textLink"
+          href={repoUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label={`Ver código de ${title} en GitHub`}
+        >
+          Código <span aria-hidden="true">↗</span>
+        </a>
 
-        <div className="projectCard__actions">
-          {
-            repoUrl ? (
-              <a
-                className="nes-btn is-primary projectBtn"
-                href={repoUrl}
-                target="_blank"
-                rel="noreferrer"
-              >
-                REPO
-              </a>
-            ) : (
-              <button className="nes-btn is-disabled projectBtn" type="button" disabled>REPO</button>
-            )}
-
-            {
-              demoUrl ? (
-                <a
-                  className="nes-btn is-success projectBtn"
-                  href={demoUrl}
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  DEMO
-                </a>
-              ) : (<button className="nes-btn is-disabled projectBtn" type="button" disabled>
-              DEMO
-            </button>
-              )}
-
-        </div>
+        {demoUrl && (
+          <a
+            className="textLink"
+            href={demoUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={`Abrir demo de ${title}`}
+          >
+            Demo <span aria-hidden="true">↗</span>
+          </a>
+        )}
       </div>
     </article>
   )

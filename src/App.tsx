@@ -1,82 +1,57 @@
-import { useEffect, useMemo, useState } from 'react'
-import Header  from './components/Header/Header'
-import AboutSection from './sections/About/AboutSection';
-import ProjectsSection from './sections/Projects/ProjectsSection';
-import ContactSection from './sections/Contact/ContactSection';
-import Footer from './components/Footer/Footer';
+import { useEffect, useState } from 'react'
+import Footer from './components/Footer/Footer'
+import Header from './components/Header/Header'
+import AboutSection from './sections/About/AboutSection'
+import ContactSection from './sections/Contact/ContactSection'
+import ProjectsSection from './sections/Projects/ProjectsSection'
 
-/**
- * App: raíz de la UI.
- * - Controla el theme (dark/light)
- * - Renderiza el Header (primer bloque del portafolio)
- */
+type Theme = 'dark' | 'light'
 
+function getInitialTheme(): Theme {
+  const storedTheme = localStorage.getItem('theme')
+
+  if (storedTheme === 'dark' || storedTheme === 'light') {
+    return storedTheme
+  }
+
+  return window.matchMedia('(prefers-color-scheme: dark)').matches
+    ? 'dark'
+    : 'light'
+}
 
 function App() {
-  // 1) Estado local del theme
-  const [theme, setTheme] = useState<"dark" | "light">("light");
+  const [theme, setTheme] = useState<Theme>(getInitialTheme)
 
-    // 2) Cargar theme guardado (localStorage) al montar
-    useEffect(() =>{
-      const stored = localStorage.getItem('theme')
-      if(stored === "dark" || stored === "light"){
-        setTheme(stored)
-        return
-      }
-          // Si no hay preferencia guardada, puedes decidir default.
-    // En la imagen inicia en "DARK", pero tú defines.
-    setTheme('dark')
-    },[])
+  useEffect(() => {
+    document.documentElement.dataset.theme = theme
+    document.documentElement.style.colorScheme = theme
+    localStorage.setItem('theme', theme)
+  }, [theme])
 
-    // 3) Aplicar theme al <html> y persistirlo cada vez que cambie
-    useEffect(() => {
-      document.documentElement.setAttribute('data-theme', theme)
-      localStorage.setItem('theme', theme)
-
-    }, [theme])
-
-
-    // 4) Handler para alternar tema
-
-    const toggleTheme = () => {
-      setTheme((preve) => (preve === "dark" ? "light" : "dark"))
-    }
-
-      // 5) Texto del botón según theme
-    const buttonLabel = useMemo(() => (
-      theme === "dark" ? "LIGHT" : "DARK"
-    ), [theme]) 
-
+  const toggleTheme = () => {
+    setTheme((currentTheme) => (currentTheme === 'dark' ? 'light' : 'dark'))
+  }
 
   return (
-    <main className="screenCenter">
-    <div className="page">
-      <Header
-        title="ARROMERO.dev"
-        name="Andres R. Romero"
-        subtitle="Fullstack Developer • React • Java • Flutter"
-        themeLabel={buttonLabel}
-        onToggleTheme={toggleTheme}
-      />
+    <>
+      <a className="skipLink" href="#main-content">
+        Saltar al contenido
+      </a>
 
-        {/* Separación visual entre header y secciones */}
-      <div style={{ height: 16 }} />
+      <main className="screenCenter" id="main-content">
+        <div className="page">
+          <Header theme={theme} onToggleTheme={toggleTheme} />
+          <AboutSection />
+          <ProjectsSection />
+          <ContactSection
+            githubUrl="https://github.com/arromero4"
+            linkedinUrl="https://www.linkedin.com/in/arromero491"
+          />
+        </div>
+      </main>
 
-      {/* Aquí irán las secciones del portafolio */}
-      <AboutSection />
-
-       <div style={{ height: 16 }} />
-      <ProjectsSection />
-      <div style={{ height: 16 }} />
-
-      <ContactSection
-        githubUrl="https://github.com/arromero4"
-        linkedinUrl="https://www.linkedin.com/in/arromero491"
-      />
-<div style={{ height: 16 }} />
-      <Footer text="© 2026 Andrés R. Romero" />
-    </div>
-    </main> 
+      <Footer />
+    </>
   )
 }
 

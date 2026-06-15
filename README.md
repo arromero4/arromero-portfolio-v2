@@ -1,129 +1,61 @@
-# 🎮 ARROMERO.dev – Retro Portfolio
+# ARROMERO.dev
 
-Portafolio personal inspirado en estética **retro / NES**, desarrollado con **React + TypeScript** usando **Vite** y **NES.css**.  
-El objetivo del proyecto es presentar mi perfil profesional y proyectos de forma clara, visualmente distintiva y con una UX cuidada, manteniendo buenas prácticas de frontend moderno.
+Portafolio personal de Andrés R. Romero, construido con React, TypeScript y
+Vite. La interfaz conserva una identidad retro, pero prioriza legibilidad,
+accesibilidad, rendimiento y una presentación profesional de los proyectos.
 
----
+## Características
 
-## ✨ Características
+- Tema claro y oscuro con preferencia persistente.
+- Diseño responsive para escritorio, tablet y móvil.
+- Navegación semántica y soporte para teclado.
+- Proyectos centralizados en `src/data/projects.ts`.
+- Metadatos SEO y sociales para GitHub Pages.
+- CSS propio sin depender de un framework visual.
 
-- 🕹️ **Estética retro (NES-style)** con marcos pixelados y tipografía 8-bit  
-- 🌗 **Modo DARK / LIGHT** con persistencia en `localStorage`  
-- 🧩 Arquitectura **modular y reutilizable** (componentes y secciones)  
-- 📱 **Diseño responsive** (desktop y mobile)  
-- 🎯 Enfoque en **claridad visual y jerarquía de información**
+## Requisitos
 
----
+- Node.js 20 o superior.
+- pnpm 11.
 
-## 🧱 Tecnologías utilizadas
-
-- **React** + **TypeScript**
-- **Vite** (bundler y dev server)
-- **NES.css** (framework CSS retro)
-- **CSS Variables** para theming (dark / light)
-- **Google Fonts – Press Start 2P** (tipografía pixel)
-
----
-
-## 📁 Estructura del proyecto
-
-src/
-├── components/
-│ ├── Header/ # Encabezado principal + toggle de tema
-│ ├── SectionFrame/ # Marco reutilizable para secciones
-│ ├── ProjectCard/ # Card individual de proyectos
-│ ├── Footer/ # Footer inferior
-│
-├── sections/
-│ ├── About/ # Sección ABOUT
-│ ├── Projects/ # Sección PROJECTS
-│ ├── Contact/ # Sección CONTACT
-│
-├── styles/
-│ └── theme.css # Variables de tema y estilos globales
-│
-├── App.tsx # Composición principal de la app
-├── main.tsx # Entry point
-
-
----
-
-## 🧩 Componentes clave
-
-### `Header`
-- Muestra el título **ARROMERO.dev**
-- Nombre y rol profesional
-- Botón **DARK / LIGHT**
-- Controla el tema global de la aplicación
-
-### `SectionFrame`
-- Componente reutilizable para secciones
-- Incluye:
-  - Marco exterior + interior
-  - Barra superior con título (ABOUT / PROJECTS / CONTACT)
-- Garantiza consistencia visual
-
-### `ProjectCard`
-- Card de proyecto con:
-  - Título
-  - Descripción
-  - Chips de tecnologías
-  - Botones **REPO** y **DEMO**
-
----
-
-## 🌗 Manejo de temas (Dark / Light)
-
-El tema se controla mediante:
-- Atributo `data-theme` en `<html>`
-- Variables CSS (`--panel-bg`, `--text-primary`, etc.)
-- Persistencia automática en `localStorage`
-
-Esto permite:
-- Cambiar tema sin recargar
-- Mantener preferencia del usuario
-
----
-
-## 🚀 Instalación y uso
+## Desarrollo local
 
 ```bash
-# Clonar el repositorio
-git clone https://github.com/tu-usuario/arromero-portfolio.git
-
-# Entrar al proyecto
-cd arromero-portfolio
-
-# Instalar dependencias
-npm install
-
-# Iniciar servidor de desarrollo
-npm run dev
-Luego abre:
-👉 http://localhost:5173
+pnpm install
+pnpm dev
 ```
 
-## 🎯 Objetivo del proyecto
-Este portafolio busca:
+La aplicación estará disponible en la URL que indique Vite, normalmente
+`http://localhost:5173`.
 
-Mostrar proyectos reales de frontend y mobile
+## Validaciones
 
-Reflejar identidad personal mediante diseño
+```bash
+pnpm lint
+pnpm build
+pnpm check
+```
 
-Servir como base escalable para:
+`pnpm check` ejecuta lint y build de forma consecutiva.
 
-Nuevos proyectos
+## Actualizar proyectos
 
-Animaciones
+Edita `src/data/projects.ts`. Cada proyecto acepta:
 
-Internacionalización
+- `title`: nombre visible.
+- `category`: tipo de proyecto.
+- `description`: resumen orientado al valor.
+- `tech`: tecnologías principales.
+- `repoUrl`: repositorio público.
+- `demoUrl`: demo opcional.
 
-Integración con CMS o API
+## Despliegue
 
-📄 Licencia
-Este proyecto es de uso personal.
-El código puede ser reutilizado con fines educativos o de referencia.
+```bash
+pnpm deploy
+```
 
-© 2026 Andrés R. Romero
+El comando genera `dist` y publica su contenido en la rama `gh-pages`. La ruta
+base está configurada para:
 
-
+`https://arromero4.github.io/arromero-portfolio-v2/`

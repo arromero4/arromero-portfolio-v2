@@ -1,102 +1,205 @@
-/* =========================================
-   Theme tokens (CSS variables)
-   Controladas por: html[data-theme="dark|light"]
-   ========================================= */
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
 :root {
-    /* Tipografía base: NES.css sugiere fuentes retro; aquí usamos fallback limpio */
-  --font-base: 'Press Start 2P', cursive, 'Courier New', Courier, monospace;
-
-    /* Layout */
-  --page-bg: #7bb4ff;            /* azul cielo como la imagen */
-  --content-max: 980px;
-
-    /* Contenedores */
-  --panel-bg: #f7f4e9;           /* crema */
-  --panel-border: #1f2a3a;       /* azul oscuro */
-  --panel-shadow: rgba(0, 0, 0, 0.25);
-
-    /* Contenedores */
-  --panel-bg: #f7f4e9;           /* crema */
-  --panel-border: #1f2a3a;       /* azul oscuro */
-  --panel-shadow: rgba(0, 0, 0, 0.25);
-
-  /* Header */
-  --header-dark: #1f2a3a;
-  --header-text: #f5f5f5;
-
-  /* Subheader */
-  --subheader-bg: #2b3a52;
-  --subheader-text: #eaeaea;
-
-  /* Botones */
-  --btn-bg: #2d67ff;
-  --btn-text: #ffffff;
-
-  /* Acentos */
-  --muted: rgba(255, 255, 255, 0.75);
+  --font-pixel: 'Press Start 2P', 'Courier New', monospace;
+  --font-body:
+    Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI',
+    sans-serif;
+  --content-max: 1120px;
+  --page-bg: #85bdf5;
+  --page-grid: rgba(21, 37, 64, 0.08);
+  --surface: #fff8e9;
+  --surface-raised: #ffffff;
+  --surface-muted: #f1e9d8;
+  --ink: #172033;
+  --ink-muted: #526078;
+  --border: #172033;
+  --accent: #1769e0;
+  --accent-strong: #0e4ca7;
+  --accent-text: #ffffff;
+  --highlight: #d9822b;
+  --highlight-text: #201506;
+  --terminal: #111827;
+  --terminal-text: #dce8ff;
+  --shadow: rgba(23, 32, 51, 0.3);
+  --focus: #ffb000;
 }
 
-/* LIGHT */
-html[data-theme="light"] {
-  --page-bg: #7bb4ff;
-  --panel-bg: #f7f4e9;
-  --panel-border: #1f2a3a;
-  --header-dark: #1f2a3a;
-  --header-text: #f5f5f5;
-  --subheader-bg: #2b3a52;
-  --subheader-text: #eaeaea;
-  --btn-bg: #2d67ff;
-  --btn-text: #ffffff;
+html[data-theme='dark'] {
+  --page-bg: #0b1324;
+  --page-grid: rgba(129, 179, 255, 0.08);
+  --surface: #151f34;
+  --surface-raised: #1b2942;
+  --surface-muted: #23324d;
+  --ink: #f5f7fb;
+  --ink-muted: #b7c4d9;
+  --border: #dce8ff;
+  --accent: #65a5ff;
+  --accent-strong: #9bc4ff;
+  --accent-text: #071120;
+  --highlight: #f2a64f;
+  --highlight-text: #1e1305;
+  --terminal: #080d18;
+  --terminal-text: #e5edff;
+  --shadow: rgba(0, 0, 0, 0.48);
+  --focus: #ffd166;
 }
 
-/* DARK (un dark-mode real que sigue viéndose retro) */
-html[data-theme="dark"] {
-  --page-bg: #0e1626;          /* fondo oscuro */
-  --panel-bg: #141b2a;         /* panel oscuro */
-  --panel-border: #e6e6e6;     /* borde claro para contraste */
-  --panel-shadow: rgba(0, 0, 0, 0.45);
-
-  --header-dark: #0b1220;
-  --header-text: #ffffff;
-
-  --subheader-bg: #111a2e;
-  --subheader-text: #eaeaea;
-
-  --btn-bg: #2d67ff;
-  --btn-text: #ffffff;
-
-  --muted: rgba(255, 255, 255, 0.75);
-    --text-primary: #ffffff;  /* ✅ texto blanco en DARK */
-  --text-muted: rgba(255, 255, 255, 0.8);
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 
-/* =========================================
-   Base layout
-   ========================================= */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 24px;
+}
 
-   body {
+body {
+  min-width: 320px;
+  min-height: 100vh;
   margin: 0;
-  background: var(--page-bg);
+  color: var(--ink);
+  background-color: var(--page-bg);
+  background-image:
+    linear-gradient(var(--page-grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--page-grid) 1px, transparent 1px);
+  background-size: 32px 32px;
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.7;
+  transition:
+    color 180ms ease,
+    background-color 180ms ease;
+  overflow-x: hidden;
 }
 
-/* Pantalla completa centrada */
+button,
+a {
+  font: inherit;
+}
+
+a {
+  color: inherit;
+}
+
+button {
+  color: inherit;
+}
+
+::selection {
+  color: var(--highlight-text);
+  background: var(--highlight);
+}
+
+:focus-visible {
+  outline: 4px solid var(--focus);
+  outline-offset: 4px;
+}
+
+.skipLink {
+  position: fixed;
+  top: 12px;
+  left: 12px;
+  z-index: 20;
+  padding: 10px 14px;
+  color: var(--accent-text);
+  background: var(--accent);
+  border: 3px solid var(--border);
+  font-family: var(--font-pixel);
+  font-size: 10px;
+  transform: translateY(-160%);
+}
+
+.skipLink:focus {
+  transform: translateY(0);
+}
+
 .screenCenter {
   min-height: 100vh;
-  display: block;
-  padding: 24px 16px;
+  padding: 32px 20px 56px;
 }
 
-/* Contenedor del contenido (ya lo tenías, lo dejamos más “tight”) */
 .page {
-
-  width: 100%;
-  max-width: var(--content-max);
+  display: grid;
+  width: min(100%, var(--content-max));
+  min-width: 0;
   margin: 0 auto;
+  gap: 28px;
 }
-/* Utilidad para centrar contenido */
-.center {
-  display: flex;
+
+.button {
+  display: inline-flex;
+  min-height: 48px;
   align-items: center;
   justify-content: center;
+  padding: 12px 18px;
+  border: 3px solid var(--border);
+  box-shadow: 5px 5px 0 var(--border);
+  font-family: var(--font-pixel);
+  font-size: 10px;
+  line-height: 1.5;
+  text-align: center;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition:
+    transform 120ms ease,
+    box-shadow 120ms ease,
+    background-color 180ms ease;
+}
+
+.button:hover {
+  transform: translate(2px, 2px);
+  box-shadow: 3px 3px 0 var(--border);
+}
+
+.button:active {
+  transform: translate(5px, 5px);
+  box-shadow: none;
+}
+
+.button--primary {
+  color: var(--accent-text);
+  background: var(--accent);
+}
+
+.button--primary:hover {
+  background: var(--accent-strong);
+}
+
+.button--secondary {
+  color: var(--ink);
+  background: var(--surface-raised);
+}
+
+.button--secondary:hover {
+  background: var(--surface-muted);
+}
+
+@media (max-width: 640px) {
+  .screenCenter {
+    padding: 16px 12px 40px;
+  }
+
+  .page {
+    gap: 18px;
+  }
+
+  .button {
+    width: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
 }

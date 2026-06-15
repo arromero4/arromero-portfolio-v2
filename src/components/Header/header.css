@@ -1,134 +1,252 @@
-/* =========================================
-   Header styles
-   Buscamos: doble marco, pixel feel, proporciones similares
-   ========================================= */
+.siteHeader {
+  border: 4px solid var(--border);
+  box-shadow: 9px 9px 0 var(--shadow);
+  background: var(--surface);
+  overflow: hidden;
+}
 
-.headerRoot {
+.siteHeader__frame {
+  margin: 8px;
+  border: 3px solid var(--border);
+}
 
-  box-sizing: border-box;
+.siteNav {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 24px;
+  min-width: 0;
+  padding: 14px 16px;
+  background: var(--terminal);
+  border-bottom: 3px solid var(--border);
+  color: var(--terminal-text);
+}
+
+.siteNav__brand {
+  min-width: 0;
+  font-family: var(--font-pixel);
+  font-size: 13px;
+  line-height: 1.5;
+  text-decoration: none;
+}
+
+.siteNav__brand span {
+  color: var(--highlight);
+}
+
+.siteNav__links {
   display: flex;
   justify-content: center;
+  gap: clamp(16px, 4vw, 36px);
 }
 
-   /**
- * "frame":
- * Contenedor general con estética tipo tarjeta NES + doble borde
- * - NES.css ofrece "nes-container", pero aquí hacemos un frame custom
- *   para acercarnos más a la imagen (borde exterior + interior).
- */
- .frame{
-  position: relative;
-  background-color: var(--panel-bg);
-  border: 4px solid var(--panel-border);
-  box-shadow: 0 6px 0 var(--panel-shadow);
-  padding: 14px;
-  width: 100%;
-
- }
-
- /* Borde interior (segundo marco) */
-
- .frame::before{
-  content:"";
-  position: absolute;
-  inset: 8px;
-  border: 3px solid var(--panel-border);
-  pointer-events: none;
- }
-
- /* Header específico */
- .frame--header{
-  padding: 18px;
- }
-
- /* Parte superior: barra principal oscura con el título */
-.headerTop{
-  background: var(--header-dark);
-  border: 3px solid var(--panel-border);
-  padding: 18px 16px;
-  margin-bottom: 14px;
-  position: relative;
-  box-shadow: 0 4px 0 var(--panel-shadow);
+.siteNav__links a {
+  color: var(--terminal-text);
+  font-size: 14px;
+  font-weight: 750;
+  text-decoration: none;
 }
 
-/* Título */
-.headerTitle{
-  
-  margin: 0;
-  text-align: center;
-    /* Para que parezca “pixel title”: letras grandes y compactas */
-
-  font-size: 44px;
-  line-height: 1;
-  letter-spacing: 1px;
- background: linear-gradient(
-    to bottom,
-    var(--header-text) 10%,
-    var(--header-text) calc(50% - 1px),
-    var(--header-dark) calc(60% - 1px),
-    var(--header-dark) calc(15% + 1px),
-    var(--header-text) calc(50% + 8px),
-    var(--header-text) 100%
-  );
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  text-transform: none;
+.siteNav__links a:hover {
+  color: var(--highlight);
 }
 
-/* Subheader con nombre, subtitle y toggle */
-.headerBottom{
-  display: flex;
+.themeToggle {
+  min-height: 40px;
+  padding: 8px 12px;
+  color: var(--accent-text);
+  background: var(--accent);
+  border: 3px solid var(--terminal-text);
+  box-shadow: 3px 3px 0 rgba(255, 255, 255, 0.24);
+  cursor: pointer;
+  font-family: var(--font-pixel);
+  font-size: 9px;
+}
+
+.themeToggle:hover {
+  background: var(--accent-strong);
+}
+
+.hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(300px, 0.75fr);
   align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-
-  background: var(--subheader-bg);
-  border: 3px solid var(--panel-border);
-  padding: 14px 16px;
-  box-shadow: 0 4px 0 var(--panel-shadow);
+  gap: clamp(32px, 6vw, 72px);
+  min-width: 0;
+  padding: clamp(32px, 6vw, 72px);
 }
 
-.headerIdentity{
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
+.hero__copy {
   min-width: 0;
 }
-.headerName{
-  color: var(--subheader-text);
-  font-size: 24px;
-  font-weight: 800;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+
+.eyebrow {
+  margin: 0 0 18px;
+  color: var(--accent-strong);
+  font-family: var(--font-pixel);
+  font-size: 10px;
+  line-height: 1.7;
+  text-transform: uppercase;
 }
 
-.headerSubtitle{
- color: var(--muted);
-  font-size: 14px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+.hero h1 {
+  max-width: 14ch;
+  margin: 0;
+  color: var(--ink);
+  font-size: clamp(2.25rem, 5.8vw, 4.7rem);
+  line-height: 1.02;
+  letter-spacing: -0.055em;
+  overflow-wrap: break-word;
+  text-shadow: 4px 4px 0 var(--shadow);
 }
 
-/* Botón */
-.headerActions {
-  flex: 0 0 auto;
+.hero__summary {
+  max-width: 62ch;
+  margin: 24px 0 0;
+  color: var(--ink-muted);
+  font-size: clamp(1rem, 1.8vw, 1.15rem);
 }
-/* Responsivo: en móvil apilamos */
-@media (max-width: 640px) {
-  .headerTitle {
-    font-size: 34px;
+
+.hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-top: 30px;
+}
+
+.hero__terminal {
+  overflow: hidden;
+  min-width: 0;
+  max-width: 100%;
+  color: var(--terminal-text);
+  background: var(--terminal);
+  border: 4px solid var(--border);
+  box-shadow: 8px 8px 0 var(--shadow);
+  transform: rotate(1.5deg);
+}
+
+.hero__terminalBar {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  min-height: 38px;
+  padding: 8px 12px;
+  border-bottom: 3px solid var(--border);
+  background: var(--surface-muted);
+}
+
+.hero__terminalBar span {
+  width: 10px;
+  height: 10px;
+  background: var(--highlight);
+  border: 2px solid var(--border);
+}
+
+.hero__terminalBar span:nth-child(2) {
+  background: var(--accent);
+}
+
+.hero__terminalBar span:nth-child(3) {
+  background: #4caf50;
+}
+
+.hero__terminalBar strong {
+  margin-left: auto;
+  color: var(--ink);
+  font-family: var(--font-pixel);
+  font-size: 8px;
+}
+
+.hero__terminal pre {
+  overflow-x: auto;
+  max-width: 100%;
+  margin: 0;
+  padding: 26px 22px;
+  font-family: 'Courier New', monospace;
+  font-size: clamp(12px, 1.5vw, 15px);
+  line-height: 1.8;
+}
+
+.codeKeyword {
+  color: #78b7ff;
+}
+
+.codeString {
+  color: #ffd166;
+}
+
+@media (max-width: 860px) {
+  .siteNav {
+    grid-template-columns: minmax(0, 1fr) auto;
   }
 
-  .headerBottom {
+  .siteNav__links {
+    display: none;
+  }
+
+  .hero {
+    grid-template-columns: 1fr;
+  }
+
+  .hero h1 {
+    max-width: 16ch;
+  }
+
+  .hero__terminal {
+    max-width: 560px;
+    transform: none;
+  }
+}
+
+@media (max-width: 520px) {
+  .siteHeader {
+    box-shadow: 5px 5px 0 var(--shadow);
+  }
+
+  .siteHeader__frame {
+    margin: 4px;
+  }
+
+  .siteNav {
+    grid-template-columns: 1fr;
+    gap: 12px;
+    padding: 12px 10px;
+  }
+
+  .siteNav__brand {
+    font-size: 10px;
+  }
+
+  .themeToggle {
+    justify-self: start;
+    padding-inline: 9px;
+    font-size: 8px;
+  }
+
+  .hero {
+    padding: 24px 16px 30px;
+  }
+
+  .hero h1 {
+    max-width: 100%;
+    font-size: clamp(1.8rem, 8.2vw, 2.25rem);
+    letter-spacing: -0.035em;
+  }
+
+  .hero__summary {
+    overflow-wrap: anywhere;
+  }
+
+  .hero__actions {
     flex-direction: column;
-    align-items: stretch;
   }
 
-  .headerActions {
-    display: flex;
-    justify-content: flex-end;
+  .hero__terminalBar strong {
+    display: none;
+  }
+
+  .hero__terminal pre {
+    padding: 18px 16px;
+    font-size: 11px;
   }
 }

@@ -1,34 +1,33 @@
-/* Texto */
-.contactText {
-  margin: 0 0 14px;
-  color: var(--text-primary);
-  font-family: var(--font-body);
-  font-size: 16px;
-  line-height: 1.6;
+.contactLayout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(280px, 0.9fr);
+  align-items: center;
+  gap: clamp(32px, 8vw, 96px);
 }
 
-/* Contenedor de botones (centrados como en el mockup) */
+.contactLayout p {
+  margin: 0;
+  color: var(--ink-muted);
+}
+
+.contactLayout p + p {
+  margin-top: 14px;
+}
+
+.contactLayout .contactLead {
+  color: var(--ink);
+  font-size: clamp(1.4rem, 3vw, 2rem);
+  font-weight: 850;
+  line-height: 1.35;
+}
+
 .contactActions {
-  display: flex;
-  gap: 14px;
-  justify-content: center;
+  display: grid;
+  gap: 16px;
 }
 
-/* Botón con tipografía pixel + tamaño */
-.contactBtn {
-  font-family: var(--font-pixel);
-  font-size: 12px;
-  padding: 10px 18px;
-}
-
-/* En pantallas pequeñas: apila o estira */
-@media (max-width: 520px) {
-  .contactActions {
-    flex-direction: column;
-  }
-
-  .contactBtn {
-    width: 100%;
-    text-align: center;
+@media (max-width: 760px) {
+  .contactLayout {
+    grid-template-columns: 1fr;
   }
 }
