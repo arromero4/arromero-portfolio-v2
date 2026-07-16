@@ -1,8 +1,15 @@
-import type { Project } from '../../data/projects'
+import type { Language } from '../../App'
 import './projectCard.css'
 
-type ProjectCardProps = Project & {
+type ProjectCardProps = {
+  category: string
+  demoUrl?: string
+  description: string
   index: number
+  language: Language
+  repoUrl: string
+  tech: string[]
+  title: string
 }
 
 export default function ProjectCard({
@@ -13,7 +20,11 @@ export default function ProjectCard({
   tech,
   repoUrl,
   demoUrl,
+  language,
 }: ProjectCardProps) {
+  const codeLabel = language === 'es' ? 'Código' : 'Code'
+  const demoLabel = language === 'es' ? 'Demo' : 'Demo'
+
   return (
     <article className="projectCard">
       <div className="projectCard__meta">
@@ -25,7 +36,14 @@ export default function ProjectCard({
         <h3>{title}</h3>
         <p>{description}</p>
 
-        <ul className="projectCard__tech" aria-label={`Tecnologías de ${title}`}>
+        <ul
+          className="projectCard__tech"
+          aria-label={
+            language === 'es'
+              ? `Tecnologías de ${title}`
+              : `Technologies used in ${title}`
+          }
+        >
           {tech.map((technology) => (
             <li key={technology}>{technology}</li>
           ))}
@@ -38,9 +56,13 @@ export default function ProjectCard({
           href={repoUrl}
           target="_blank"
           rel="noopener noreferrer"
-          aria-label={`Ver código de ${title} en GitHub`}
+          aria-label={
+            language === 'es'
+              ? `Ver código de ${title} en GitHub`
+              : `View ${title} source code on GitHub`
+          }
         >
-          Código <span aria-hidden="true">↗</span>
+          {codeLabel} <span aria-hidden="true">↗</span>
         </a>
 
         {demoUrl && (
@@ -49,9 +71,11 @@ export default function ProjectCard({
             href={demoUrl}
             target="_blank"
             rel="noopener noreferrer"
-            aria-label={`Abrir demo de ${title}`}
+            aria-label={
+              language === 'es' ? `Abrir demo de ${title}` : `Open ${title} demo`
+            }
           >
-            Demo <span aria-hidden="true">↗</span>
+            {demoLabel} <span aria-hidden="true">↗</span>
           </a>
         )}
       </div>
