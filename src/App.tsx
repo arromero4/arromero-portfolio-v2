@@ -44,6 +44,7 @@ function App() {
           <AboutSection />
           <ProjectsSection />
           <ContactSection
+            emailUrl="mailto:arromero0408@gmail.com"
             githubUrl="https://github.com/arromero4"
             linkedinUrl="https://www.linkedin.com/in/arromero491"
           />

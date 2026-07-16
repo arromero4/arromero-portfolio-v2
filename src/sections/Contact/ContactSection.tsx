@@ -2,11 +2,13 @@ import SectionFrame from '../../components/SectionFrame/SectionFrame'
 import './contact.css'
 
 type ContactSectionProps = {
+  emailUrl: string
   githubUrl: string
   linkedinUrl: string
 }
 
 export default function ContactSection({
+  emailUrl,
   githubUrl,
   linkedinUrl,
 }: ContactSectionProps) {
@@ -20,13 +22,16 @@ export default function ContactSection({
           </p>
           <p>
             Puedes conocer más de mi trabajo en GitHub o escribirme directamente
-            por LinkedIn.
+            por LinkedIn o correo electronico.
           </p>
         </div>
 
         <div className="contactActions">
+          <a className="button button--primary" href={emailUrl}>
+            Enviar correo
+          </a>
           <a
-            className="button button--primary"
+            className="button button--secondary"
             href={linkedinUrl}
             target="_blank"
             rel="noopener noreferrer"

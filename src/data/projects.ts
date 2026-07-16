@@ -9,6 +9,30 @@ export type Project = {
 
 export const projects: Project[] = [
   {
+    title: 'Portafolio Web Anterior',
+    category: 'Portfolio',
+    description:
+      'Version previa de mi portafolio personal, enfocada en presentar experiencia, proyectos web y desarrollo mobile.',
+    tech: ['React', 'CSS', 'Portfolio'],
+    repoUrl: 'https://github.com/arromero4/arromero-portfolio',
+  },
+  {
+    title: 'Laundry POS',
+    category: 'Private project',
+    description:
+      'Sistema POS para lavanderia con flujo de ordenes, operacion diaria y gestion del servicio. Mencion de proyecto privado.',
+    tech: ['React', 'TypeScript', 'POS', 'Private'],
+    repoUrl: 'https://github.com/arromero4/lavanderia_pos',
+  },
+  {
+    title: 'Flutter Portfolio',
+    category: 'Mobile portfolio',
+    description:
+      'Portafolio personal construido con Flutter para mostrar experiencia mobile y una presentacion alternativa multiplataforma.',
+    tech: ['Flutter', 'Dart', 'Portfolio'],
+    repoUrl: 'https://github.com/arromero4/arromero_flutter_portfolio',
+  },
+  {
     title: 'MIBI CRUD',
     category: 'Full stack',
     description:
